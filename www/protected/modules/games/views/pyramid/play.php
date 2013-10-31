@@ -128,7 +128,7 @@
                 <input class="input" type="password" autocapitalize="off" autocorrect="off" autocomplete="off" id="password" name="password" placeholder="Password" tabindex="2" />
             </div>
             <div class="button">
-                <input id="rememberMe" type="checkbox" value="1" name="rememberMe" style="width:20px; height: 20px;" tabindex="3">
+                <input id="rememberMe" type="checkbox" value="1" name="rememberMe" class="checkbox" tabindex="3">
                 <label for="rememberMe">Remember me next time</label>
             </div>
             <div class="button">
@@ -168,7 +168,7 @@
     <nav id="menu-right" style="visibility: hidden;">
         <ul>
             <li class="back_blue row"><div><a href="<?php echo Yii::app()->baseUrl; ?>/index.php/games/Pyramid/" location="main_screen"><span>HOME</span></a></div></li>
-            <li class="back_blue row hidden" id="mmenuPlay"><div><a href="#" location="game_screen"><span>PLAY</span></a></div></li>
+            <li class="back_blue row" id="mmenuPlay"><div><a href="#" location="game_screen"><span>PLAY</span></a></div></li>
             <li class="back_blue row hidden" id="mmenuCustomize"><div><a href="#" location="game_customize"><span>CUSTOMIZE</span></a></div></li>
             <li class="back_blue row touch" id="mmenuLogin"><div><a  href="#" location="login"><span>LOGIN</span></a></div></li>
             <li class="back_blue row"><div><a href="#" location="how_to"><span>HOW TO PLAY</span></a></div></li>
