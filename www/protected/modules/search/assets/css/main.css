@@ -1,4 +1,4 @@
-div.search-form
+etdiv.search-form
 {
     background-color:white;
 }
@@ -38,7 +38,6 @@ a:link, a:visited, a:hover {
 }
 
 .image_description {
-    font-size: 12px;
     width: 140px;
     height: 40px;
     overflow-x: hidden;
@@ -327,15 +326,4 @@ div.search-form {
 
 #tags {
     padding-left: 8%;
-}
-
-div.wide.form label {
-    float: left;
-    margin-right: 10px;
-    overflow: hidden;
-    position: relative;
-    text-align: right;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 119px;
 }
