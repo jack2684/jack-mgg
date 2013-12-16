@@ -209,7 +209,7 @@ return array (
   array (
     'ZenTag' => 
     array (
-      'name' => 'Zen Tag',
+      'name' => 'Zen Tag 2',
       'description' => 'Clear your mind and you will hear the voice of the serene tagger within you. Ohm.',
       'arcade_image' => 'zentag_arcade.png',
       'more_info_url' => 'http://www.google.co.uk',
@@ -262,7 +262,8 @@ return array (
     'Pyramid' => 
     array (
       'name' => 'Pyramid',
-      'description' => 'Clear your mind and you will hear the voice of the serene tagger within you. Ohm.',
+      'description' => 'Clear your mind and you will hear the voice of the serene tagger within you. Ohm. hah
+',
       'arcade_image' => 'pyramid_arcade.png',
       'more_info_url' => '',
       'play_once_and_move_on' => '0',
@@ -273,9 +274,32 @@ return array (
     ),
     'NexTag' => 
     array (
-      'name' => 'NexTag',
-      'description' => 'Clear your mind and you will hear the voice of the serene tagger within you. Ohm.',
+      'name' => 'NexTag2 ',
+      'description' => 'jack rocksjack rocksjack rocksjack rocksjack rocksjack rocksjack rocksjack rocksjack rocksjack rocksjack rocksjack rocksjack rocksjack rocks',
       'arcade_image' => 'nextag_arcade.png',
+      'more_info_url' => '',
+      'play_once_and_move_on' => '0',
+      'play_once_and_move_on_url' => '',
+      'turns' => '4',
+      'image_width' => '450',
+      'image_height' => '450',
+    ),
+    'OneUp' => 
+    array (
+      'name' => 'OneUp2',
+      'description' => 'Clear your mind and you will hear the voice of the serene tagger within you. Ohm.',
+      'arcade_image' => 'zenpond_arcade.png',
+      'more_info_url' => '',
+      'turns' => '3',
+      'submissions' => '3',
+      'image_width' => '450',
+      'image_height' => '450',
+    ),
+    'StupidRobot' => 
+    array (
+      'name' => 'StupidRobot2',
+      'description' => 'Clear your mind and you will hear the voice of the serene tagger within you. Ohm.',
+      'arcade_image' => 'stupidRobot_arcade.png',
       'more_info_url' => '',
       'play_once_and_move_on' => '0',
       'play_once_and_move_on_url' => '',
@@ -289,7 +313,7 @@ return array (
     'app_name' => 'Metadata Games',
     'throttle_interval' => '500',
     'message_queue_interval' => '450',
-    'app_email' => 'anup.dhamala+gameadmin@gmail.com',
+    'app_email' => 'jack@jack.com',
     'pagination_size' => '25',
     'app_upload_path' => '/../uploads',
     'app_upload_url' => '/uploads',
