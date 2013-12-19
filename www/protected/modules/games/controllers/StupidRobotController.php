@@ -61,6 +61,7 @@ class StupidRobotController extends GxController
             $cs->registerCssFile(Yii::app()->baseUrl . '/css/jquery.fancybox-1.3.4.css');
             $cs->registerCssFile(GamesModule::getAssetsUrl() . '/stupidRobot/css/normalize.css');
             $cs->registerCssFile(GamesModule::getAssetsUrl() . '/stupidRobot/css/main.css');
+            //$cs->registerCssFile(GamesModule::getAssetsUrl() . '/stupidRobot/css/main_new.css');
             //$cs->registerCssFile(GamesModule::getAssetsUrl() . '/stupidRobot/css/style.css');  
             $cs->registerCssFile(Yii::app()->baseUrl . '/js/jquery.countdown/jquery.countdown.css');
             $cs->registerCssFile(Yii::app()->baseUrl . '/js/jquery.toastmessage/css/jquery.toastmessage-min.css');
@@ -139,7 +140,8 @@ EOD;
             $cs->registerCoreScript('jquery.ui');
             $cs->registerCssFile(Yii::app()->baseUrl . '/css/jquery.fancybox-1.3.4.css');
             $cs->registerCssFile(GamesModule::getAssetsUrl() . '/stupidRobot/css/normalize.css');
-            $cs->registerCssFile(GamesModule::getAssetsUrl() . '/stupidRobot/css/main.css');
+            //$cs->registerCssFile(GamesModule::getAssetsUrl() . '/stupidRobot/css/main.css');
+            $cs->registerCssFile(GamesModule::getAssetsUrl() . '/stupidRobot/css/main_new.css');
             $cs->registerCssFile(Yii::app()->baseUrl . '/js/jquery.countdown/jquery.countdown.css');
             $cs->registerCssFile(Yii::app()->baseUrl . '/js/jquery.toastmessage/css/jquery.toastmessage-min.css');
             $cs->registerScriptFile(Yii::app()->baseUrl . '/js/mg.sounds.js', CClientScript::POS_HEAD);
