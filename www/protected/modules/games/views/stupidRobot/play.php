@@ -50,7 +50,7 @@
 					<br><a href="game.html" class="button">REBOOT</a>
 				</div>
 				<div class="rightBox" id="imageContainer">
-					<canvas class="clearfix" id="canvas" width="1000" height="1000"> </canvas> 
+					<canvas class="clearfix" id="canvas2" width="1000" height="1000"> </canvas> 
 				</div>
 			</div>
 	    </div>

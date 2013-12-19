@@ -164,6 +164,7 @@ EOD;
             $cs->registerScriptFile(Yii::app()->baseUrl . '/js/jquery.toastmessage/jquery.toastmessage-min.js', CClientScript::POS_END);
             $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/mg.game.stupidrobot.js', CClientScript::POS_END);
             $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/animation_gameplay.js', CClientScript::POS_END);
+            $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/animation_score.js', CClientScript::POS_END);
 			$throttleInterval = (int)Yii::app()->fbvStorage->get("settings.throttle_interval", 1500);
             $asset_url = Yii::app()->baseUrl;
             $arcade_url = Yii::app()->getRequest()->getHostInfo() . Yii::app()->createUrl('/');

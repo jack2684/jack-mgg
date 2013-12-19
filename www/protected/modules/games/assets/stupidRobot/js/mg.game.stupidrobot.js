@@ -20,26 +20,26 @@ MG_GAME_STUPIDROBOT = function ($) {
         maxLevel: 13,
         letterWidthInEms: 0.67,
         speed: 200,
-        secs: 120,
+        secs: 5,
         fields: null,
         animation: null,
         
         // new added for scoring
     	wordSpaces:null,
-    	wordArray:["Word", "Words", "wordss", "Word", "Words", "wordss", "Word", "Words", "wordss", "Word"],
+    	wordArray:["Word", "Words", "Word", "Word", "Words", "wordss", "Word", "Words", "wordss", "Word", "jack"],
     	a:"",
     	p:null,
     	i:0,
     	activeLine:0,
-    	stage: null,
+    	scorestage: null,
     	scorelevel:0,
 
         init: function (options) {
-        	console.log("init");
+        	//console.log("init");
         	$("#score").hide();
         	//pass function
         	//alert("inputFields click");
-        	console.log('do we get in ongameinit?');
+        	//console.log('do we get in ongameinit?');
             var settings = $.extend(options, {
                 ongameinit: MG_GAME_STUPIDROBOT.ongameinit
             });
@@ -86,12 +86,12 @@ MG_GAME_STUPIDROBOT = function ($) {
         	var loadScreen=document.getElementById("loading");
         	loadScreen.parentNode.removeChild(loadScreen);	
 
-        	console.log("end of init");
+        	//console.log("end of init");
         	
         },
         
         setLevel: function (){
-            console.log("setlevel");
+            //console.log("setlevel");
         	if(MG_GAME_STUPIDROBOT.level > MG_GAME_STUPIDROBOT.maxLevel){
         		MG_GAME_STUPIDROBOT.renderFinal();
         		return;
@@ -106,7 +106,7 @@ MG_GAME_STUPIDROBOT = function ($) {
         },
         
         flashMessage: function (message, color){
-        	console.log("flashMessage");
+        	//console.log("flashMessage");
         	var savedMessage=$("#gameMessage").html();
         	$("#gameMessage").html(message);
         	$("#gameMessage").css("color", color);
@@ -124,7 +124,7 @@ MG_GAME_STUPIDROBOT = function ($) {
         },
         
         evalWord: function (){
-            console.log("evalWord");
+            //console.log("evalWord");
         	var word=$("#inputArea").val();
         	$("#inputArea").val("");
         	// evaluate for word too short
@@ -150,7 +150,7 @@ MG_GAME_STUPIDROBOT = function ($) {
         },
         
         timerTick: function (){
-            console.log("timerTick");
+            //console.log("timerTick");
         	currentMinutes = Math.floor(MG_GAME_STUPIDROBOT.secs / 60);
             currentSeconds = MG_GAME_STUPIDROBOT.secs % 60;
             if(currentSeconds <= 9) currentSeconds = "0" + currentSeconds;
@@ -172,7 +172,7 @@ MG_GAME_STUPIDROBOT = function ($) {
 		 * on callback for the submit button
 		 */
         onsubmit:function () {
-        	console.log("onsubmit");
+        	//console.log("onsubmit");
             if (!MG_GAME_STUPIDROBOT.busy) {
                 var tags = $.trim(MG_GAME_STUPIDROBOT.wordField.val());
                 if (tags == "") {
@@ -262,7 +262,7 @@ MG_GAME_STUPIDROBOT = function ($) {
 		 * evaluate each response from /api/games/play calls (POST or GET)
 		 */
         onresponse:function (response) {
-        	console.log("onresponse");
+        	//console.log("onresponse");
             MG_GAME_API.curtain.hide();
 
             if ($.trim(MG_GAME_STUPIDROBOT.game.more_info_url) != "")
@@ -331,8 +331,8 @@ MG_GAME_STUPIDROBOT = function ($) {
 		 * display games turn
 		 */
         renderTurn: function (response) {
-        	console.log('in renderTurn');
-        	console.log("image url: " + response.turn.medias[0].full_size);
+        	//console.log('in renderTurn');
+        	//console.log("image url: " + response.turn.medias[0].full_size);
 
 
                 var turn_info = {
@@ -348,12 +348,12 @@ MG_GAME_STUPIDROBOT = function ($) {
         },
         
         ongameinit:function (response) {
-        	console.log('ongameinit to with response, about to go in onresponse');
+        	//console.log('ongameinit to with response, about to go in onresponse');
         	MG_GAME_STUPIDROBOT.onresponse(response);
         },
         
         scrollIn:function () {
-        	console.log("MG_GAME_STUPIDROBOT.scrollIn");
+        	//console.log("MG_GAME_STUPIDROBOT.scrollIn");
         	MG_GAME_STUPIDROBOT.p=MG_GAME_STUPIDROBOT.wordSpaces[MG_GAME_STUPIDROBOT.activeLine];
         	MG_GAME_STUPIDROBOT.i++;
         	if(MG_GAME_STUPIDROBOT.i > MG_GAME_STUPIDROBOT.wordArray[MG_GAME_STUPIDROBOT.activeLine].length) {
@@ -364,13 +364,13 @@ MG_GAME_STUPIDROBOT = function ($) {
         		if(MG_GAME_STUPIDROBOT.activeLine >= MG_GAME_STUPIDROBOT.wordArray.length){
         			//scroll is finished
         			createjs.Ticker.setFPS(24);
-        			createjs.Ticker.addListener(MG_GAME_STUPIDROBOT.stage);
+        			createjs.Ticker.addListener(MG_GAME_STUPIDROBOT.scorestage);
         			return;
         			}
         		setTimeout("MG_GAME_STUPIDROBOT.scrollIn()",25);
         		return;
         	 }
-        	MG_GAME_STUPIDROBOT.a = MG_GAME_STUPIDROBOT.wordArray[activeLine].substring(0,i);
+        	MG_GAME_STUPIDROBOT.a = MG_GAME_STUPIDROBOT.wordArray[MG_GAME_STUPIDROBOT.activeLine].substring(0,MG_GAME_STUPIDROBOT.i);
         	if(MG_GAME_STUPIDROBOT.a=="!"){
         		MG_GAME_STUPIDROBOT.i=0;
         		setTimeout("MG_GAME_STUPIDROBOT.scrollIn()",25);
@@ -378,8 +378,8 @@ MG_GAME_STUPIDROBOT = function ($) {
         		MG_GAME_STUPIDROBOT.activeLine++;
         		return;
         	}
-        	MG_GAME_STUPIDROBOT.p.innerHTML = a+"_";
-        	MG_GAME_STUPIDROBOT.setTimeout("MG_GAME_STUPIDROBOT.scrollIn()",25);
+        	MG_GAME_STUPIDROBOT.p.innerHTML = MG_GAME_STUPIDROBOT.a+"_";
+        	setTimeout("MG_GAME_STUPIDROBOT.scrollIn()",25);
         },
         
         renderFinal:function () {
@@ -415,12 +415,13 @@ MG_GAME_STUPIDROBOT = function ($) {
 			
 			message.innerHTML="YOU TAUGHT STUPID ROBOT "+MG_GAME_STUPIDROBOT.scorelevel+" WORDS!<br>"+messageString;
 		
-			var canvas = document.getElementById("canvas");
+			var canvas2 = document.getElementById("canvas2");
 			var exportRoot = new lib.animation_score(MG_GAME_STUPIDROBOT.scorelevel);
+			//console.log("MG_GAME_STUPIDROBOT.scorelevel: " + MG_GAME_STUPIDROBOT.scorelevel);
 		
-			MG_GAME_STUPIDROBOT.stage = new createjs.Stage(canvas);
-			MG_GAME_STUPIDROBOT.stage.addChild(exportRoot);
-			MG_GAME_STUPIDROBOT.stage.update();
+			MG_GAME_STUPIDROBOT.scorestage = new createjs.Stage(canvas2);
+			MG_GAME_STUPIDROBOT.scorestage.addChild(exportRoot);
+			MG_GAME_STUPIDROBOT.scorestage.update();
 		
 			//set up scroller
 			var wordspaceCollection=document.getElementsByClassName("underlinedText");
