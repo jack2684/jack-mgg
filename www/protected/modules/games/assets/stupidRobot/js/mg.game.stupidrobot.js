@@ -23,9 +23,20 @@ MG_GAME_STUPIDROBOT = function ($) {
         secs: 120,
         fields: null,
         animation: null,
+        
+        // new added for scoring
+    	wordSpaces:null,
+    	wordArray:["Word", "Words", "wordss", "Word", "Words", "wordss", "Word", "Words", "wordss", "Word"],
+    	a:"",
+    	p:null,
+    	i:0,
+    	activeLine:0,
+    	stage: null,
+    	scorelevel:0,
 
         init: function (options) {
         	console.log("init");
+        	$("#score").hide();
         	//pass function
         	//alert("inputFields click");
         	console.log('do we get in ongameinit?');
@@ -79,14 +90,10 @@ MG_GAME_STUPIDROBOT = function ($) {
         	
         },
         
-        roundOver:function () {
-        	alert("all done");
-        },
-        
         setLevel: function (){
             console.log("setlevel");
         	if(MG_GAME_STUPIDROBOT.level > MG_GAME_STUPIDROBOT.maxLevel){
-        		MG_GAME_STUPIDROBOT.roundOver();
+        		MG_GAME_STUPIDROBOT.renderFinal();
         		return;
         	}
         	//console.log("MG_GAME_STUPIDROBOT.level in setLevel: " + MG_GAME_STUPIDROBOT.level * 0.67 + "em");
@@ -152,7 +159,7 @@ MG_GAME_STUPIDROBOT = function ($) {
 			// ":" + currentSeconds; //Set the element id you need the time put
 			// into.
             if(MG_GAME_STUPIDROBOT.secs <= 0 ){
-            	MG_GAME_STUPIDROBOT.roundOver();
+            	MG_GAME_STUPIDROBOT.renderFinal();
             	return;
             }
             
@@ -343,6 +350,82 @@ MG_GAME_STUPIDROBOT = function ($) {
         ongameinit:function (response) {
         	console.log('ongameinit to with response, about to go in onresponse');
         	MG_GAME_STUPIDROBOT.onresponse(response);
+        },
+        
+        scrollIn:function () {
+        	console.log("MG_GAME_STUPIDROBOT.scrollIn");
+        	MG_GAME_STUPIDROBOT.p=MG_GAME_STUPIDROBOT.wordSpaces[MG_GAME_STUPIDROBOT.activeLine];
+        	MG_GAME_STUPIDROBOT.i++;
+        	if(MG_GAME_STUPIDROBOT.i > MG_GAME_STUPIDROBOT.wordArray[MG_GAME_STUPIDROBOT.activeLine].length) {
+        		MG_GAME_STUPIDROBOT.wordSpaces[MG_GAME_STUPIDROBOT.activeLine].innerHTML = MG_GAME_STUPIDROBOT.a;
+        		MG_GAME_STUPIDROBOT.activeLine++;
+        		MG_GAME_STUPIDROBOT.i=0;
+        		
+        		if(MG_GAME_STUPIDROBOT.activeLine >= MG_GAME_STUPIDROBOT.wordArray.length){
+        			//scroll is finished
+        			createjs.Ticker.setFPS(24);
+        			createjs.Ticker.addListener(MG_GAME_STUPIDROBOT.stage);
+        			return;
+        			}
+        		setTimeout("MG_GAME_STUPIDROBOT.scrollIn()",25);
+        		return;
+        	 }
+        	MG_GAME_STUPIDROBOT.a = MG_GAME_STUPIDROBOT.wordArray[activeLine].substring(0,i);
+        	if(MG_GAME_STUPIDROBOT.a=="!"){
+        		MG_GAME_STUPIDROBOT.i=0;
+        		setTimeout("MG_GAME_STUPIDROBOT.scrollIn()",25);
+        		MG_GAME_STUPIDROBOT.p.style.backgroundColor = "black";
+        		MG_GAME_STUPIDROBOT.activeLine++;
+        		return;
+        	}
+        	MG_GAME_STUPIDROBOT.p.innerHTML = a+"_";
+        	MG_GAME_STUPIDROBOT.setTimeout("MG_GAME_STUPIDROBOT.scrollIn()",25);
+        },
+        
+        renderFinal:function () {
+        	$("#game").hide();
+        	$("#score").show();
+			//passed levels should be added as "!"
+			
+			//determine level by length of word array, minus passes
+			for(var i=0; i<MG_GAME_STUPIDROBOT.wordArray.length; i++){
+				if(MG_GAME_STUPIDROBOT.wordArray[i] != "!"){
+					MG_GAME_STUPIDROBOT.scorelevel++;
+				}
+			}
+			//set up text message
+			var message=document.getElementById("gameMessage");
+			var messageString;
+			switch(MG_GAME_STUPIDROBOT.scorelevel){
+				case 0:
+				messageString="STUPID ROBOT IS STILL COMPLETELY STUPID!";
+				break;
+				case 1:
+				messageString="STUPID ROBOT AN ITTY BITTY BIT SMARTER.";
+				break;
+				case 2:
+				messageString="STUPID ROBOT A TINY BIT SMARTER.";
+				break;
+				case 3:
+				messageString="STUPID ROBOT SLIGHTLY SMARTER.";
+				break;
+				default:
+				messageString="STUPID ROBOT AN ITTY BITTY BIT SMARTER.";
+			}
+			
+			message.innerHTML="YOU TAUGHT STUPID ROBOT "+MG_GAME_STUPIDROBOT.scorelevel+" WORDS!<br>"+messageString;
+		
+			var canvas = document.getElementById("canvas");
+			var exportRoot = new lib.animation_score(MG_GAME_STUPIDROBOT.scorelevel);
+		
+			MG_GAME_STUPIDROBOT.stage = new createjs.Stage(canvas);
+			MG_GAME_STUPIDROBOT.stage.addChild(exportRoot);
+			MG_GAME_STUPIDROBOT.stage.update();
+		
+			//set up scroller
+			var wordspaceCollection=document.getElementsByClassName("underlinedText");
+			MG_GAME_STUPIDROBOT.wordSpaces = Array.prototype.slice.call( wordspaceCollection );
+			MG_GAME_STUPIDROBOT.scrollIn();
         },
     });
 }(jQuery);
