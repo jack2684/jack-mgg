@@ -20,22 +20,26 @@ MG_GAME_STUPIDROBOT = function ($) {
         maxLevel: 13,
         letterWidthInEms: 0.67,
         speed: 200,
-        secs: 5,
+        secs: 1200,
         fields: null,
         animation: null,
+        scorehtml:"",
         
         // new added for scoring
     	wordSpaces:null,
-    	wordArray:["Word", "Words", "Word", "Word", "Words", "wordss", "Word", "Words", "wordss", "Word", "jack"],
+    	wordArray:["Word", "Words", "Word", "Word", "Words", "wordss", "Word", "Words", "wordss", "Word"],
     	a:"",
     	p:null,
     	i:0,
     	activeLine:0,
     	scorestage: null,
     	scorelevel:0,
+    	
 
         init: function (options) {
         	//console.log("init");
+        	scorehtml = $("#score").html();
+        	$("#score").html("");
         	$("#score").hide();
         	//pass function
         	//alert("inputFields click");
@@ -45,12 +49,16 @@ MG_GAME_STUPIDROBOT = function ($) {
             });
             
         	
-        	$("#inputFields .button").click(function(){
+        	$("#inputFields").click(function(){
         		$("#inputFields span").eq(MG_GAME_STUPIDROBOT.level - MG_GAME_STUPIDROBOT.startingLevel).addClass("passed");
         		MG_GAME_STUPIDROBOT.level++;
         		MG_GAME_STUPIDROBOT.setLevel();
         		}
         	);
+        	
+        	$("#reboot").click(function(){
+        		location.reload();
+        	});
         	
         	MG_GAME_STUPIDROBOT.level = MG_GAME_STUPIDROBOT.startingLevel;
 
@@ -383,8 +391,10 @@ MG_GAME_STUPIDROBOT = function ($) {
         },
         
         renderFinal:function () {
+        	$("#game").html("");
         	$("#game").hide();
         	$("#score").show();
+        	$("#score").html(MG_GAME_STUPIDROBOT.scorehtml);
 			//passed levels should be added as "!"
 			
 			//determine level by length of word array, minus passes
@@ -413,13 +423,14 @@ MG_GAME_STUPIDROBOT = function ($) {
 				messageString="STUPID ROBOT AN ITTY BITTY BIT SMARTER.";
 			}
 			
+			//$("#gameMessage2").html("YOU TAUGHT STUPID ROBOT "+MG_GAME_STUPIDROBOT.scorelevel+" WORDS!<br>"+messageString);
 			message.innerHTML="YOU TAUGHT STUPID ROBOT "+MG_GAME_STUPIDROBOT.scorelevel+" WORDS!<br>"+messageString;
 		
-			var canvas2 = document.getElementById("canvas2");
+			var canvas = document.getElementById("canvas");
 			var exportRoot = new lib.animation_score(MG_GAME_STUPIDROBOT.scorelevel);
 			//console.log("MG_GAME_STUPIDROBOT.scorelevel: " + MG_GAME_STUPIDROBOT.scorelevel);
 		
-			MG_GAME_STUPIDROBOT.scorestage = new createjs.Stage(canvas2);
+			MG_GAME_STUPIDROBOT.scorestage = new createjs.Stage(canvas);
 			MG_GAME_STUPIDROBOT.scorestage.addChild(exportRoot);
 			MG_GAME_STUPIDROBOT.scorestage.update();
 		

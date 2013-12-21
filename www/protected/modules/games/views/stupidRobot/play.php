@@ -15,7 +15,7 @@
 					<input type=text id="inputArea" class="underlinedText clearfix"></input>
 					<div id="inputFields" class="clearfix">
 						<span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
-						<a class="button">pass</a>
+						<a class="button" id="pass">pass</a>
 					</div>
 					<canvas class="clearfix" id="canvas" width="342" height="212"> </canvas> 
 				</div>
@@ -47,10 +47,10 @@
 					<br><span class="underlinedText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 					<br><span class="underlinedText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 					<br><span class="underlinedText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					<br><a href="game.html" class="button">REBOOT</a>
+					<br><a class="button" id="reboot">REBOOT</a>
 				</div>
 				<div class="rightBox" id="imageContainer">
-					<canvas class="clearfix" id="canvas2" width="1000" height="1000"> </canvas> 
+					<canvas class="clearfix" id="canvas" width="1000" height="1000"> </canvas> 
 				</div>
 			</div>
 	    </div>
