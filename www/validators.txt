@@ -1,0 +1,22 @@
+view validators names! name 
+view validators names! description 
+view validators names! arcade_image 
+view validators names! active 
+view validators names! play_once_and_move_on 
+view validators names! turns 
+- - - - - - - - - - - - - - - - - - - - - - 
+view validators names! name 
+- - - - - - - - - - - - - - - - - - - - - - 
+view validators names! description 
+- - - - - - - - - - - - - - - - - - - - - - 
+view validators names! more_info_url 
+view validators names! play_once_and_move_on_url 
+- - - - - - - - - - - - - - - - - - - - - - 
+view validators names! image_width 
+view validators names! image_height 
+- - - - - - - - - - - - - - - - - - - - - - 
+view validators names! active 
+view validators names! play_once_and_move_on 
+- - - - - - - - - - - - - - - - - - - - - - 
+view validators names! turns 
+- - - - - - - - - - - - - - - - - - - - - - 

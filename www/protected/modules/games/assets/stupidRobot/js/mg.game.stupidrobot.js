@@ -38,7 +38,7 @@ MG_GAME_STUPIDROBOT = function ($) {
 
         init: function (options) {
         	//console.log("init");
-        	scorehtml = $("#score").html();
+        	MG_GAME_STUPIDROBOT.scorehtml = $("#score").html();
         	$("#score").html("");
         	$("#score").hide();
         	//pass function

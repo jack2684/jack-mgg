@@ -1,0 +1,13 @@
+view POST! active => 1 
+view POST! name => Pyramid 
+view POST! description => Clear your mind and you will hear the voice of the serene tagger within you. Ohm. hah
+ 
+view POST! more_info_url =>  
+view POST! arcade_image => pyramid_arcade.png 
+view POST! play_once_and_move_on => 0 
+view POST! play_once_and_move_on_url =>  
+view POST! turns => 4 
+view POST! image_width => 450 
+view POST! image_height => 450 
+view POST! collections => Array 
+view POST! plugins => Array 

@@ -161,7 +161,6 @@ MG_API = function ($) {
                         errors += key + ': ' + value + "<br/>";
                     });
                     MG_API.error("<h1>Ooops</h1><p>" + errors + "</p>");
-
                 } else {
                     MG_API.error("<h1>Ooops</h1><p>An error happened!</p>");
                 }
@@ -204,7 +203,7 @@ MG_API = function ($) {
          */
         ajaxCall: function (path, callback, options, doNotSaveLastCallTime) {
             var secretHeader = ('X_' + MG_API.settings.app_id + '_SHARED_SECRET').replace(/\_/g, "-");
-
+            
             var defaults = {
                 url: MG_API.settings.api_url + path,
                 // set needed shared secret header

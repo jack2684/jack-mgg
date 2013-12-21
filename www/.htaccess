@@ -14,3 +14,6 @@ AddType audio/mpeg .mp3
 AddType audio/ogg .ogg
 AddType audio/mp4 .m4a
 AddType audio/wav .wav
+
+# enable subdirectory inheritance of custom php settings
+suPHP_ConfigPath /home/path/public_html

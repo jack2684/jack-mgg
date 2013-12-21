@@ -1,0 +1,13 @@
+Jack in indeside again! 1 : active => 1 count: 10 
+Jack in indeside again! 1 : name => Pyramid count: 10 
+Jack in indeside again! 1 : description => Clear your mind and you will hear the voice of the serene tagger within you. Ohm. hah
+ count: 10 
+Jack in indeside again! 1 : more_info_url =>  count: 10 
+Jack in indeside again! 1 : arcade_image => pyramid_arcade.png count: 10 
+Jack in indeside again! 1 : play_once_and_move_on => 0 count: 10 
+Jack in indeside again! 1 : play_once_and_move_on_url =>  count: 10 
+Jack in indeside again! 1 : turns => 4 count: 10 
+Jack in indeside again! 1 : image_width => 450 count: 10 
+Jack in indeside again! 1 : image_height => 450 count: 10 
+Jack in indeside again!  : collections => Array count: 10 
+Jack in indeside again!  : plugins => Array count: 10 

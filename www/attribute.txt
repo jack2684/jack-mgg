@@ -1,0 +1,10 @@
+view POST! name => 0 
+view POST! description => 1 
+view POST! arcade_image => 2 
+view POST! active => 3 
+view POST! play_once_and_move_on => 4 
+view POST! turns => 5 
+view POST! more_info_url => 6 
+view POST! play_once_and_move_on_url => 7 
+view POST! image_width => 8 
+view POST! image_height => 9 
