@@ -1,14 +1,10 @@
 (function (lib, img, cjs) {
 
-console.log("in the small animation_score.js");
-
 var p; // shortcut to reference prototypes
 
 // stage content:
 (lib.animation_score = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{},true);
-	
-	console.log("lib.animation_score = function(mode,startPosition,loop)");
 
 	// timeline functions:
 	this.frame_0 = function() {
@@ -103,8 +99,6 @@ p.nominalBounds = new cjs.Rectangle(185.6,76,223.3,407.5);
 
 // symbols:
 (lib.WhiteBox = function() {
-	console.log("lib.WhiteBox");
-
 	this.initialize();
 
 	// Layer 1
@@ -118,7 +112,6 @@ p.nominalBounds = new cjs.Rectangle(0,0,158,140);
 
 
 (lib.Tween12 = function() {
-	console.log("lib.Tween12");
 	this.initialize();
 
 	// Layer 1
@@ -132,7 +125,6 @@ p.nominalBounds = new cjs.Rectangle(-8.2,-10.4,16.6,20.9);
 
 
 (lib.spinnertween = function() {
-	console.log("lib.spinnertween");
 	this.initialize();
 
 	// Layer 1
