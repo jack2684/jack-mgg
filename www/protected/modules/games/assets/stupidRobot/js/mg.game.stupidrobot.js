@@ -20,14 +20,15 @@ MG_GAME_STUPIDROBOT = function ($) {
         maxLevel: 13,
         letterWidthInEms: 0.67,
         speed: 200,
-        secs: 1200,
+        secs: 120,
         fields: null,
         animation: null,
         scorehtml:"",
         
         // new added for scoring
     	wordSpaces:null,
-    	wordArray:["Word", "Words", "Word", "Word", "Words", "wordss", "Word", "Words", "wordss", "Word"],
+    	wordArray:["!", "!", "!", "!", "!", "!", "!", "!", "!", "!",],
+    	//wordArray:["word", "word","word","word","word","word","word","word","word","word",],
     	a:"",
     	p:null,
     	i:0,
@@ -69,7 +70,8 @@ MG_GAME_STUPIDROBOT = function ($) {
         	 	var keyCode = e.keyCode || e.which;
                 
                 if(keyCode === 13){
-                	MG_GAME_STUPIDROBOT.evalWord();
+                	MG_GAME_STUPIDROBOT.onsubmit();
+                    return false;
                 }         
         	 });
 
@@ -183,85 +185,36 @@ MG_GAME_STUPIDROBOT = function ($) {
         	//console.log("onsubmit");
             if (!MG_GAME_STUPIDROBOT.busy) {
                 var tags = $.trim(MG_GAME_STUPIDROBOT.wordField.val());
-                if (tags == "") {
-                    $().toastmessage("showToast", {
-                        text:"<p>Oops! Type something!</p>",
-                        position:"tops-center",
-                        type:"notice",
-                        background: "#F1F1F1"
-                    });
-                    // MG_GAME_PYRAMID.playSound('try_again');
 
-                } else if (tags.length < (MG_GAME_STUPIDROBOT.level + MG_GAME_STUPIDROBOT.level_step)) {
-                    $().toastmessage("showToast", {
-                        text: "not enough letters!",// "That wasn't a " +
-													// (MG_GAME_PYRAMID.level +
-													// MG_GAME_PYRAMID.level_step)
-													// + " letters word!",
-                        position:"tops-center",
-                        type:"notice",
-                        background: "#F1F1F1"
-                    });
-                    // MG_GAME_PYRAMID.playSound('try_again');
-                }
-                else if (tags.length > (MG_GAME_STUPIDROBOT.level + MG_GAME_STUPIDROBOT.level_step)) {
-                    $().toastmessage("showToast", {
-                        text:"too many letters!",
-                        position:"tops-center",
-                        type:"notice",
-                        background: "#F1F1F1"
-                    });
-                    // MG_GAME_PYRAMID.playSound('try_again');
-                }
-                // check if these special characters are present, and if
-				// present, complain
-                // forbid: `~!@#$%^&*()_=+{}|<>./?;:[]\",'
-                // TODO: Turn this into a function maybe..
-                else if (/[`~!@#$%^&*()_=+{}|<>./?;:\[\]\\",']/g.test(tags)) {
-                    $().toastmessage("showToast", {
-                        text:"special character not allowed!",
-                        position:"tops-center",
-                        type:"notice",
-                        background: "#F1F1F1"
-                    });
-                    // MG_GAME_PYRAMID.playSound('try_again');
-                }
-                else if($.inArrayIn(tags, MG_GAME_STUPIDROBOT.words) !== -1){
-                    $().toastmessage("showToast", {
-                        text:"already tried that!",
-                        position:"tops-center",
-                        type:"notice",
-                        background: "#F1F1F1"
-                    });
-                    // MG_GAME_PYRAMID.playSound('try_again');
-                } else {
-                	MG_GAME_STUPIDROBOT.words.push(tags);
-                    // text entered
-                    // MG_GAME_API.curtain.show();
-                    // MG_GAME_PYRAMID.busy = true;
+            	MG_GAME_STUPIDROBOT.words.push(tags);
+                // text entered
+                // MG_GAME_API.curtain.show();
+                // MG_GAME_PYRAMID.busy = true;
 
-                    // send ajax call as POST request to validate a turn
-                    MG_API.ajaxCall('/games/play/gid/' + MG_GAME_API.settings.gid, function (response) {
-                        if (MG_API.checkResponse(response)) {
-                        	MG_GAME_STUPIDROBOT.wordField.val("");
-                        	MG_GAME_STUPIDROBOT.onresponse(response);
-                        }
-                        return false;
-                    }, {
-                        type:'post',
-                        data:{ // this is the data needed for the turn
-                            turn: 1,
-                            played_game_id: MG_GAME_STUPIDROBOT.game.played_game_id,
-                            'submissions':[
-                                {
-                                    media_id: MG_GAME_STUPIDROBOT.media.media_id,
-                                    pass: false,
-                                    tags: tags.toLowerCase()
-                                }
-                            ]
-                        }
-                    });
-                }
+                // send ajax call as POST request to validate a turn
+                MG_API.ajaxCall('/games/play/gid/' + MG_GAME_API.settings.gid, function (response) {
+                    if (MG_API.checkResponse(response)) {
+                    	MG_GAME_STUPIDROBOT.wordField.val("");
+                    	MG_GAME_STUPIDROBOT.onresponse(response);
+                    }
+                    return false;
+                }, {
+                    type:'post',
+                    data:{ // this is the data needed for the turn
+                        turn: 1,
+                        played_game_id: MG_GAME_STUPIDROBOT.game.played_game_id,
+                        'submissions':[
+                            {
+                                media_id: MG_GAME_STUPIDROBOT.media.media_id,
+                                pass: false,
+                                tags: tags.toLowerCase()
+                            }
+                        ]
+                    }
+                });
+                
+                
+                
             }
             return false;
         },
@@ -296,23 +249,22 @@ MG_GAME_STUPIDROBOT = function ($) {
                     if (turn.medias[0].tag_accepted) {
                         accepted.level = turn.medias[0].level;
                         accepted.tag = tag;
-/*
- * var myArray = ['Our test sample agrees!', "You've guessed it!", 'Your word
- * matched!']; $().toastmessage("showToast", { text:
- * myArray[Math.floor(Math.random() * myArray.length)], position:"tops-center",
- * type:"notice" });
- */
+                        
                         MG_GAME_STUPIDROBOT.levels.push(accepted);
-                        MG_GAME_STUPIDROBOT.nextlevel(false);
+                        //console.log(MG_GAME_STUPIDROBOT.level + " and " + tag.tag);
+                        
+                        MG_GAME_STUPIDROBOT.wordArray[MG_GAME_STUPIDROBOT.level - 4] = tag.tag;
+                		$("#inputFields span").eq(MG_GAME_STUPIDROBOT.level-MG_GAME_STUPIDROBOT.startingLevel).addClass("completed");
+                		MG_GAME_STUPIDROBOT.level++;
+                		MG_GAME_STUPIDROBOT.setLevel();
+
+                		MG_GAME_STUPIDROBOT.flashMessage("WORD ACCEPTED!", "green");
+                		animation.robot.gotoAndPlay("correctAnswer");
                     } else {
                     		// no match -- feedback
-                        var myArray = ['No match. Try again?', "That's not what our experts said!", "Sorry, our experts don't agree!"];
-                        $().toastmessage("showToast", {
-                            text: myArray[Math.floor(Math.random() * myArray.length)],
-                            position:"tops-center",
-                            type:"notice",
-                            background: "red"
-                        });
+                    	//console.log("not accepted");
+                    	MG_GAME_STUPIDROBOT.flashMessage("NGR ERROR: TRY AGAIN", "red");
+                		animation.robot.gotoAndPlay("incorrectAnswer");
                         // MG_GAME_PYRAMID.playSound('fail_sound');
                     }
                 }
@@ -364,17 +316,26 @@ MG_GAME_STUPIDROBOT = function ($) {
         	//console.log("MG_GAME_STUPIDROBOT.scrollIn");
         	MG_GAME_STUPIDROBOT.p=MG_GAME_STUPIDROBOT.wordSpaces[MG_GAME_STUPIDROBOT.activeLine];
         	MG_GAME_STUPIDROBOT.i++;
+        	//console.log("MG_GAME_STUPIDROBOT.activeLine: " + MG_GAME_STUPIDROBOT.activeLine);
+    		if(MG_GAME_STUPIDROBOT.activeLine >= MG_GAME_STUPIDROBOT.wordArray.length){
+    			//scroll is finished
+    			createjs.Ticker.setFPS(24);
+    			createjs.Ticker.addListener(MG_GAME_STUPIDROBOT.scorestage);
+    			return;
+			}
         	if(MG_GAME_STUPIDROBOT.i > MG_GAME_STUPIDROBOT.wordArray[MG_GAME_STUPIDROBOT.activeLine].length) {
         		MG_GAME_STUPIDROBOT.wordSpaces[MG_GAME_STUPIDROBOT.activeLine].innerHTML = MG_GAME_STUPIDROBOT.a;
         		MG_GAME_STUPIDROBOT.activeLine++;
         		MG_GAME_STUPIDROBOT.i=0;
         		
-        		if(MG_GAME_STUPIDROBOT.activeLine >= MG_GAME_STUPIDROBOT.wordArray.length){
+        		//console.log(MG_GAME_STUPIDROBOT.activeLine + " and " + MG_GAME_STUPIDROBOT.wordArray.length);
+        		if(MG_GAME_STUPIDROBOT.activeLine >= MG_GAME_STUPIDROBOT.wordArray.length - 1){
         			//scroll is finished
+        			
         			createjs.Ticker.setFPS(24);
         			createjs.Ticker.addListener(MG_GAME_STUPIDROBOT.scorestage);
         			return;
-        			}
+    			}
         		setTimeout("MG_GAME_STUPIDROBOT.scrollIn()",25);
         		return;
         	 }
@@ -384,9 +345,12 @@ MG_GAME_STUPIDROBOT = function ($) {
         		setTimeout("MG_GAME_STUPIDROBOT.scrollIn()",25);
         		MG_GAME_STUPIDROBOT.p.style.backgroundColor = "black";
         		MG_GAME_STUPIDROBOT.activeLine++;
+            	//console.log(MG_GAME_STUPIDROBOT.activeLine + " and2 " + MG_GAME_STUPIDROBOT.wordArray.length);
+
         		return;
         	}
         	MG_GAME_STUPIDROBOT.p.innerHTML = MG_GAME_STUPIDROBOT.a+"_";
+
         	setTimeout("MG_GAME_STUPIDROBOT.scrollIn()",25);
         },
         

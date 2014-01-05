@@ -29,6 +29,9 @@ class StupidRobotGame extends NexTagGame
                     'tag_id' => 0
                 );
                 $currentTag = $tag;
+                $file = fopen("test.txt","w");
+                fwrite($file, $tag);
+                fclose($file);
                 break;
             }
             // add the extracted tags to the media info
