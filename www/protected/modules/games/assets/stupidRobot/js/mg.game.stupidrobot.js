@@ -27,8 +27,8 @@ MG_GAME_STUPIDROBOT = function ($) {
         
         // new added for scoring
     	wordSpaces:null,
-    	wordArray:["!", "!", "!", "!", "!", "!", "!", "!", "!", "!",],
-    	//wordArray:["word", "word","word","word","word","word","word","word","word","word",],
+    	//wordArray:["!", "!", "!", "!", "!", "!", "!", "!", "!", "!",],
+    	wordArray:["word", "word","word","word","word","word","word","word","!","word",],
     	a:"",
     	p:null,
     	i:0,
@@ -42,18 +42,34 @@ MG_GAME_STUPIDROBOT = function ($) {
         	MG_GAME_STUPIDROBOT.scorehtml = $("#score").html();
         	$("#score").html("");
         	$("#score").hide();
-        	//pass function
-        	//alert("inputFields click");
-        	//console.log('do we get in ongameinit?');
             var settings = $.extend(options, {
                 ongameinit: MG_GAME_STUPIDROBOT.ongameinit
             });
             
+            var game_assets_uri = $("#game_assets_uri").val();
+
+            MG_GAME_STUPIDROBOT.sounds = {
+                fail_sound: game_assets_uri + 'audio/sound_fail.mp3',
+                letter_0  : game_assets_uri + 'audio/sound0.mp3',
+                letter_1  : game_assets_uri + 'audio/sound1.mp3',
+                letter_2  : game_assets_uri + 'audio/sound2.mp3',
+                letter_3  : game_assets_uri + 'audio/sound3.mp3',
+                letter_4  : game_assets_uri + 'audio/sound4.mp3',
+                letter_5  : game_assets_uri + 'audio/sound5.mp3',
+                letter_6  : game_assets_uri + 'audio/sound6.mp3',
+                letter_7  : game_assets_uri + 'audio/sound7.mp3',
+                next_level: game_assets_uri + 'audio/nextlevel.mp3',
+                try_again : game_assets_uri + 'audio/tryagain.mp3'
+            };
+            $.each(MG_GAME_STUPIDROBOT.sounds, function(index, source) {
+            	MG_GAME_STUPIDROBOT.sound[index] = new Sound(source);
+            });
         	
-        	$("#inputFields").click(function(){
+        	$("#pass").click(function(){
         		$("#inputFields span").eq(MG_GAME_STUPIDROBOT.level - MG_GAME_STUPIDROBOT.startingLevel).addClass("passed");
         		MG_GAME_STUPIDROBOT.level++;
         		MG_GAME_STUPIDROBOT.setLevel();
+        		MG_GAME_STUPIDROBOT.playSound('next_level');  
         		}
         	);
         	
@@ -178,6 +194,11 @@ MG_GAME_STUPIDROBOT = function ($) {
 
         },
         
+        playSound: function (index) {
+        	//MG_GAME_STUPIDROBOT.sound[index].loop = true;
+        	MG_GAME_STUPIDROBOT.sound[index].play(MG_GAME_STUPIDROBOT.sounds[index]);
+        },
+        
         /*
 		 * on callback for the submit button
 		 */
@@ -265,7 +286,7 @@ MG_GAME_STUPIDROBOT = function ($) {
                     	//console.log("not accepted");
                     	MG_GAME_STUPIDROBOT.flashMessage("NGR ERROR: TRY AGAIN", "red");
                 		animation.robot.gotoAndPlay("incorrectAnswer");
-                        // MG_GAME_PYRAMID.playSound('fail_sound');
+                		MG_GAME_STUPIDROBOT.playSound('fail_sound');
                     }
                 }
             }
@@ -317,12 +338,7 @@ MG_GAME_STUPIDROBOT = function ($) {
         	MG_GAME_STUPIDROBOT.p=MG_GAME_STUPIDROBOT.wordSpaces[MG_GAME_STUPIDROBOT.activeLine];
         	MG_GAME_STUPIDROBOT.i++;
         	//console.log("MG_GAME_STUPIDROBOT.activeLine: " + MG_GAME_STUPIDROBOT.activeLine);
-    		if(MG_GAME_STUPIDROBOT.activeLine >= MG_GAME_STUPIDROBOT.wordArray.length){
-    			//scroll is finished
-    			createjs.Ticker.setFPS(24);
-    			createjs.Ticker.addListener(MG_GAME_STUPIDROBOT.scorestage);
-    			return;
-			}
+
         	if(MG_GAME_STUPIDROBOT.i > MG_GAME_STUPIDROBOT.wordArray[MG_GAME_STUPIDROBOT.activeLine].length) {
         		MG_GAME_STUPIDROBOT.wordSpaces[MG_GAME_STUPIDROBOT.activeLine].innerHTML = MG_GAME_STUPIDROBOT.a;
         		MG_GAME_STUPIDROBOT.activeLine++;
@@ -349,6 +365,14 @@ MG_GAME_STUPIDROBOT = function ($) {
 
         		return;
         	}
+        	
+    		if(MG_GAME_STUPIDROBOT.activeLine >= MG_GAME_STUPIDROBOT.wordArray.length ){
+    			//scroll is finished
+    			createjs.Ticker.setFPS(24);
+    			createjs.Ticker.addListener(MG_GAME_STUPIDROBOT.scorestage);
+    			return;
+			}
+        	
         	MG_GAME_STUPIDROBOT.p.innerHTML = MG_GAME_STUPIDROBOT.a+"_";
 
         	setTimeout("MG_GAME_STUPIDROBOT.scrollIn()",25);
@@ -360,6 +384,10 @@ MG_GAME_STUPIDROBOT = function ($) {
         	$("#score").show();
         	$("#score").html(MG_GAME_STUPIDROBOT.scorehtml);
 			//passed levels should be added as "!"
+        	
+        	$("#reboot").click(function(){
+        		location.reload();
+        	});
 			
 			//determine level by length of word array, minus passes
 			for(var i=0; i<MG_GAME_STUPIDROBOT.wordArray.length; i++){

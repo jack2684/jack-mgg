@@ -148,6 +148,7 @@ EOD;
             $cs->registerScriptFile(Yii::app()->baseUrl . '/js/mg.game.api.js', CClientScript::POS_END);
             $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/mg.game.stupidrobot.js', CClientScript::POS_END);
             $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/animation_gameplay.js', CClientScript::POS_END);
+            $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/loopAudio.js', CClientScript::POS_END);
             //$cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/animation_gameplay2.js', CClientScript::POS_END);
             $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/animation_score.js', CClientScript::POS_END);
 			$throttleInterval = (int)Yii::app()->fbvStorage->get("settings.throttle_interval", 1500);

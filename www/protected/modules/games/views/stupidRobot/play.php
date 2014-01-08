@@ -1,5 +1,12 @@
 
     <body id="gameContent" class="gameContent">
+    	 <input type="hidden" id="game_assets_uri" value="<?php echo GamesModule::getAssetsUrl() . '/stupidRobot/'; ?>" />
+    	 <input type="hidden" id="loopsound" value="<?php echo GamesModule::getAssetsUrl() . '/pyramid/'; ?>" />
+    	 
+		<form>
+			<button class="button" id="button-loop-1" type="button" value="1">sound</button>
+		</form>
+    
          <div id="game">
 	    	 <div id="loading">loading!</div>
 	
