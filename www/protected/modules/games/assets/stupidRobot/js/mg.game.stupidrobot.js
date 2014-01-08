@@ -20,7 +20,7 @@ MG_GAME_STUPIDROBOT = function ($) {
         maxLevel: 13,
         letterWidthInEms: 0.67,
         speed: 200,
-        secs: 120,
+        secs: 1200,
         fields: null,
         animation: null,
         scorehtml:"",

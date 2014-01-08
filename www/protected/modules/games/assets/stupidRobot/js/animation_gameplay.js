@@ -30,7 +30,7 @@ p.nominalBounds = new cjs.Rectangle(138.3,44.3,66.5,121.2);
 p.nominalBounds = new cjs.Rectangle(-12.2,-6.5,24.6,13.2);
 
 
-(lib.Symbol2 = function() {
+(lib.S2 = function() {
 	this.initialize();
 
 	// Layer 1
@@ -109,7 +109,7 @@ p.nominalBounds = new cjs.Rectangle(-17.7,-62.3,24.6,13.2);
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(8).call(this.frame_8).wait(10).call(this.frame_18).wait(11).call(this.frame_29));
 
 	// Layer 1
-	this.instance_1 = new lib.Symbol2();
+	this.instance_1 = new lib.S2();
 	this.instance_1.setTransform(0.5,0.5,1,1,0,0,0,33.2,56.2);
 
 	this.spinner = new lib.Symbol1();
