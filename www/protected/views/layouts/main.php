@@ -5,7 +5,7 @@
   <?php $this->widget('application.components.MGMenu',array(
     'items'=>array(
       array('label'=>'Search', 'url'=>array('/search')),
-      array('label'=>'Arcade', 'url'=>array('/site/arcade')),
+      array('label'=>'Arcade', 'url'=>array('/site/arcade'), 'visible'=>!Yii::app()->user->isGuest),
       array('label'=>'Contact', 'url'=>array('/site/contact')),
       array('url'=>Yii::app()->getModule('user')->loginUrl, 'label'=>Yii::app()->getModule('user')->t("Login"), 'visible'=>Yii::app()->user->isGuest),
       array('url'=>Yii::app()->getModule('user')->registrationUrl, 'label'=>Yii::app()->getModule('user')->t("Register"), 'visible'=>Yii::app()->user->isGuest),

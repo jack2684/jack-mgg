@@ -42,12 +42,7 @@ class DefaultController extends Controller
         if ($user && $user->role == INSTITUTION) {
             $institutions = Institution::model()->find('user_id=' . Yii::app()->user->Id);
             $model->setAttribute('institution_id', $institutions->id);
-        }
-        // Junjie Guan: if it is not login, I load another layouts that do have 'arcade' in the navigation bar
-		if(!$user || $user->role == PLAYER){
-			$this->layout = '//layouts/column1_no_arcade';
-		}
-        
+        }        
         
         $this->render('index',
             array(
