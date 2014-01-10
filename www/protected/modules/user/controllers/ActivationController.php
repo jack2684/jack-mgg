@@ -14,6 +14,13 @@ class ActivationController extends Controller
 	 * Activation user account
 	 */
 	public function actionActivation () {
+		// Junjie Guan: if it is not login, I load another layouts that do have 'arcade' in the navigation bar
+		$user = User::loadUser(Yii::app()->user->id);
+		if(!$user || $user->role == PLAYER){
+			$this->layout = '//layouts/column1_no_arcade';
+		}else{
+			$this->layout = '//layouts/column1';
+		}
 		$email = $_GET['email'];
 		$activekey = $_GET['activekey'];
 		if ($email&&$activekey) {

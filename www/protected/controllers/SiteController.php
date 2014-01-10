@@ -88,6 +88,11 @@ class SiteController extends Controller
                 $this->refresh();
             }
         }
+        // Junjie Guan: if it is not login, I load another layouts that do have 'arcade' in the navigation bar
+        $user = User::loadUser(Yii::app()->user->id);
+        if(!$user || $user->role == PLAYER){
+        	$this->layout = '//layouts/main_no_arcade';
+        }
         $this->render('contact', array('model' => $model));
     }
 

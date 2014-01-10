@@ -16,12 +16,7 @@
   )); 
   ?></div><!-- mainmenu -->
 </div>
-<div id="submenu" class="clearfix">
-    <?php $this->widget('application.components.MGMenu',array(
-      'items'=>Yii::app()->getModule("admin")->getAdminToolsSubMenuLinks(),
-    )); 
-    ?>
-  </div>
+
 <div class="container" id="page">
   <?php if(isset($this->breadcrumbs)):?>
     <?php $this->widget('zii.widgets.CBreadcrumbs', array(

@@ -19,9 +19,17 @@ class ProfileController extends Controller
 	 */
 	public function actionProfile()
 	{
-		$this->layout = '//layouts/column2';  
-		MGHelper::setFrontendTheme();  
 		$model = $this->loadUser();
+		
+		// Junjie Guan: if it is not login, I load another layouts that do have 'arcade' in the navigation bar
+		$user = User::loadUser(Yii::app()->user->id);
+		if(!$user || $user->role == PLAYER){
+			$this->layout = '//layouts/column2_no_arcade';
+		}else{
+			$this->layout = '//layouts/column2';
+		}
+		MGHelper::setFrontendTheme();
+		
 	    $this->render('profile',array(
 	    	'model'=>$model,
 			'profile'=>$model->profile,
@@ -35,8 +43,13 @@ class ProfileController extends Controller
 	 */
 	public function actionEdit()
 	{
-	  $this->layout = '//layouts/column2';
-		MGHelper::setFrontendTheme();  
+		$user = User::loadUser(Yii::app()->user->id);
+		if(!$user || $user->role == PLAYER){
+			$this->layout = '//layouts/column2_no_arcade';
+		}else{
+			$this->layout = '//layouts/column2';
+		}
+		MGHelper::setFrontendTheme();
 		
 		$model = $this->loadUser();
 		$profile = $model->profile;
@@ -83,8 +96,13 @@ class ProfileController extends Controller
 	 * Change password
 	 */
 	public function actionChangepassword() {
-	  $this->layout = '//layouts/column2'; 
-		MGHelper::setFrontendTheme();  
+		$user = User::loadUser(Yii::app()->user->id);
+		if(!$user || $user->role == PLAYER){
+			$this->layout = '//layouts/column2_no_arcade';
+		}else{
+			$this->layout = '//layouts/column2';
+		}
+		MGHelper::setFrontendTheme();
     
 		$model = new UserChangePassword;
 		if (Yii::app()->user->id) {
