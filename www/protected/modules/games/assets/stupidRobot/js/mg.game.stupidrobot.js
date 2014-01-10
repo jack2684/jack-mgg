@@ -321,7 +321,6 @@ MG_GAME_STUPIDROBOT = function ($) {
                     url_full_size: response.turn.medias[0].full_size,
                     licence_info: MG_GAME_API.parseLicenceInfo(response.turn.licences)
                 };
-
                 
                 $("#imageContainer").find("img").attr("src", turn_info.url);
 

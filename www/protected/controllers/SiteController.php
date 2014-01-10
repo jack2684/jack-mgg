@@ -7,6 +7,7 @@ class SiteController extends Controller
         return array( // add blocked IP filter here
             'Installed',
             'IPBlock',
+        	'accessControl', // perform access control for CRUD operations
         );
     }
 
@@ -34,6 +35,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+    	
         $this->redirect(array('/search'));
     }
 
