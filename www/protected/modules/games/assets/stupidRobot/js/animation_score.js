@@ -95,27 +95,27 @@ var p; // shortcut to reference prototypes
 
 	// eyes
 	this.eyes = new lib.Eyes();
-	this.eyes.setTransform(228.3,313.4,1,1,0,0,0,-129.9,-60.9);
+	this.eyes.setTransform(228.3,314.4,1,1,0,0,0,-129.9,-60.9);
 
-	this.timeline.addTween(cjs.Tween.get(this.eyes).wait(12).to({y:265.4},6).wait(15).to({y:224.4},9).wait(35));
+	this.timeline.addTween(cjs.Tween.get(this.eyes).wait(12).to({y:313.4},0).to({y:265.4},6).wait(15).to({y:224.4},9).wait(35));
 
 	// mouth
 	this.mouth = new lib.Mouth();
-	this.mouth.setTransform(295.9,422.4,1,1,0,0,0,41.1,10.5);
+	this.mouth.setTransform(295.9,423.4,1,1,0,0,0,41.1,10.5);
 
-	this.timeline.addTween(cjs.Tween.get(this.mouth).wait(12).to({y:374.4},6).wait(35).to({y:321.4},7).wait(17));
+	this.timeline.addTween(cjs.Tween.get(this.mouth).wait(12).to({y:422.4},0).to({y:374.4},6).wait(35).to({y:321.4},7).wait(17));
 
 	// spinner
 	this.spinner = new lib.Spinner();
-	this.spinner.setTransform(277.2,124.2,3.358,3.358,0,0,0,-5.4,-55.8);
+	this.spinner.setTransform(277.2,125.2,3.358,3.358,0,0,0,-5.4,-55.8);
 
-	this.timeline.addTween(cjs.Tween.get(this.spinner).wait(12).to({y:76.2},6).wait(59));
+	this.timeline.addTween(cjs.Tween.get(this.spinner).wait(12).to({y:124.2},0).to({y:76.2},6).wait(59));
 
 	// robot
 	this.instance_5 = new lib.RoboBody();
-	this.instance_5.setTransform(297.3,308.9,1,1,0,0,0,111.7,177);
+	this.instance_5.setTransform(297.3,309.9,1,1,0,0,0,111.7,177);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(12).to({y:260.9},6).wait(59));
+	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(12).to({y:308.9},0).to({y:260.9},6).wait(59));
 
 	// secondWheels
 	this.instance_6 = new lib.MovingWheel();
@@ -128,15 +128,26 @@ var p; // shortcut to reference prototypes
 
 	// wheels
 	this.instance_8 = new lib.Wheel("synched",0);
-	this.instance_8.setTransform(385.4,459.3,1,1,0,0,0,-11.6,32.2);
+	this.instance_8.setTransform(385.4,460.3,1,1,0,0,0,-11.6,32.2);
 
 	this.instance_9 = new lib.Wheel("synched",0);
-	this.instance_9.setTransform(209.3,459.3,1,1,0,0,0,-11.6,32.2);
+	this.instance_9.setTransform(209.3,460.3,1,1,0,0,0,-11.6,32.2);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_9},{t:this.instance_8}]}).wait(77));
 
+	// ground
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f().s("#000000").ss(1,1,1).p("EAu3AAAMhdtAAA");
+	this.shape.setTransform(300.2,513);
+
+	this.shape_1 = new cjs.Shape();
+	this.shape_1.graphics.f("#FFFFFF").s().p("Egu2gCTMBdtAAAIAAEnMg6WAAAIAAgFMgjXAAAIAAki").cp();
+	this.shape_1.setTransform(300.2,527.8);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_1},{t:this.shape}]}).wait(77));
+
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(185.6,102,223.5,410.1);
+p.nominalBounds = new cjs.Rectangle(0.3,103,599.9,439.7);
 
 
 // symbols:

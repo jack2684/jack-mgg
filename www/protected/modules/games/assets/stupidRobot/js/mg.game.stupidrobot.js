@@ -20,15 +20,15 @@ MG_GAME_STUPIDROBOT = function ($) {
         maxLevel: 13,
         letterWidthInEms: 0.67,
         speed: 200,
-        secs: 1200,
+        secs: 120,
         fields: null,
         animation: null,
         scorehtml:"",
         
         // new added for scoring
     	wordSpaces:null,
-    	//wordArray:["!", "!", "!", "!", "!", "!", "!", "!", "!", "!",],
-    	wordArray:["word", "word","word","word","word","word","word","word","!","word",],
+    	wordArray:["word", "!", "!", "!", "!", "!", "!", "!", "!", "word",],
+    	//wordArray:["word", "word","word","word","word","word","word","word","!","word",],
     	a:"",
     	p:null,
     	i:0,
@@ -39,6 +39,11 @@ MG_GAME_STUPIDROBOT = function ($) {
 
         init: function (options) {
         	//console.log("init");
+        	// TO ZARA: line 46~48, this is point when I load the play page, in your case
+        	// your first page would be the splash page. At this very moment of 
+        	// loading (window.onload in your place), I simply store the html
+        	// that is about to be deleted first, and then actually erase it. 
+        	// By doing so I can handle the conflict of names in html easily
         	MG_GAME_STUPIDROBOT.scorehtml = $("#score").html();
         	$("#score").html("");
         	$("#score").hide();
@@ -70,6 +75,8 @@ MG_GAME_STUPIDROBOT = function ($) {
         		MG_GAME_STUPIDROBOT.level++;
         		MG_GAME_STUPIDROBOT.setLevel();
         		MG_GAME_STUPIDROBOT.playSound('next_level');  
+        		//ANIMATION ADDITION ~ play "confused" animation for passing		
+        		animation.robot.gotoAndPlay("confused");
         		}
         	);
         	
@@ -86,6 +93,17 @@ MG_GAME_STUPIDROBOT = function ($) {
         	 	var keyCode = e.keyCode || e.which;
                 
                 if(keyCode === 13){
+                	var word=$("#inputArea").val();
+                	//evaluate for word too short
+                	if(word.length < MG_GAME_STUPIDROBOT.level){
+                		console.log("too short");
+                //ANIMATION ADDITION ~ play "confused" animation for passing		
+                		animation.robot.gotoAndPlay("confused");
+                		
+                		MG_GAME_STUPIDROBOT.flashMessage("INPUT A "+ MG_GAME_STUPIDROBOT.level+" LETTER WORD", "red");
+                		return;
+                	}
+                	
                 	MG_GAME_STUPIDROBOT.onsubmit();
                     return false;
                 }         
@@ -112,6 +130,8 @@ MG_GAME_STUPIDROBOT = function ($) {
         	var loadScreen=document.getElementById("loading");
         	loadScreen.parentNode.removeChild(loadScreen);	
 
+        	//ANIMATION ADDITION ~ play "scan" when animation launches. Use this code to cause animation to scan new images
+    		animation.robot.gotoAndPlay("scan");
         	//console.log("end of init");
         	
         },
@@ -378,6 +398,9 @@ MG_GAME_STUPIDROBOT = function ($) {
         },
         
         renderFinal:function () {
+        	// TO ZARA: line 404~407, this is point when I about to display the score page
+        	// I simply make game page empty by using $("#game").html(""), or 
+        	// you can store the html in a vairable before you erase them.
         	$("#game").html("");
         	$("#game").hide();
         	$("#score").show();

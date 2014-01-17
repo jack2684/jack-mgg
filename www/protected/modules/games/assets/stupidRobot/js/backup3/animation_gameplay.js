@@ -6,18 +6,13 @@ var p; // shortcut to reference prototypes
 (lib.animation_gameplay = function() {
 	this.initialize();
 
-	// ground
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f().s("#000000").ss(1,1,1).p("AaUAAMg0mAAA");
-	this.shape.setTransform(168.8,189.2);
-
 	// Layer 1
 	this.robot = new lib.Robot();
-	this.robot.setTransform(170,111.7,1.23,1.23,0,0,0,0.4,-5.9);
+	this.robot.setTransform(170,121.3,1.23,1.23,0,0,0,0.4,-5.9);
 
-	this.addChild(this.robot,this.shape);
+	this.addChild(this.robot);
 }).prototype = p = new cjs.Container();
-p.nominalBounds = new cjs.Rectangle(129.2,39,81.8,149.8);
+p.nominalBounds = new cjs.Rectangle(129.2,48.6,81.8,149.8);
 
 
 // symbols:
@@ -176,27 +171,27 @@ p.nominalBounds = new cjs.Rectangle(0,0,66.5,112.5);
 
 	// eyebrows
 	this.shape_24 = new cjs.Shape();
-	this.shape_24.graphics.f().s("#999999").ss(1.7,1,1).p("AhMAAICZAA");
+	this.shape_24.graphics.f().s("#FFFFFF").ss(1.7,1,1).p("AhMAAICZAA");
 	this.shape_24.setTransform(17.4,58.5);
 
 	this.shape_25 = new cjs.Shape();
-	this.shape_25.graphics.f().s("#999999").ss(1.7,1,1).p("AhKAVQBCg1BTAP");
+	this.shape_25.graphics.f().s("#FFFFFF").ss(1.7,1,1).p("AhKAVQBCg1BTAP");
 	this.shape_25.setTransform(17.7,57.4);
 
 	this.shape_26 = new cjs.Shape();
-	this.shape_26.graphics.f().s("#999999").ss(1.7,1,1).p("AhKAcQA5hYBcA1");
+	this.shape_26.graphics.f().s("#FFFFFF").ss(1.7,1,1).p("AhKAcQA5hYBcA1");
 	this.shape_26.setTransform(17.5,56.1);
 
 	this.shape_27 = new cjs.Shape();
-	this.shape_27.graphics.f().s("#999999").ss(1.7,1,1).p("AhLAfQBBhoBWBI");
+	this.shape_27.graphics.f().s("#FFFFFF").ss(1.7,1,1).p("AhLAfQBBhoBWBI");
 	this.shape_27.setTransform(17.2,54.2);
 
 	this.shape_28 = new cjs.Shape();
-	this.shape_28.graphics.f().s("#999999").ss(1.7,1,1).p("AhMAPQBMhFBNBJ");
+	this.shape_28.graphics.f().s("#FFFFFF").ss(1.7,1,1).p("AhMAPQBMhFBNBJ");
 	this.shape_28.setTransform(17.4,54.8);
 
 	this.shape_29 = new cjs.Shape();
-	this.shape_29.graphics.f().s("#999999").ss(1.7,1,1).p("AhMAIQBMghBNAh");
+	this.shape_29.graphics.f().s("#FFFFFF").ss(1.7,1,1).p("AhMAIQBMghBNAh");
 	this.shape_29.setTransform(17.4,56.7);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_24}]}).to({state:[{t:this.shape_25}]},1).to({state:[{t:this.shape_26}]},1).to({state:[{t:this.shape_27}]},1).to({state:[{t:this.shape_28}]},14).to({state:[{t:this.shape_29}]},1).to({state:[{t:this.shape_24}]},1).wait(1));
