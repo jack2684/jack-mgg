@@ -27,7 +27,7 @@ MG_GAME_STUPIDROBOT = function ($) {
         
         // new added for scoring
     	wordSpaces:null,
-    	wordArray:["word", "!", "!", "!", "!", "!", "!", "!", "!", "word",],
+    	wordArray:["word", "word", "!", "!", "!", "!", "!", "!", "!", "!",],
     	//wordArray:["word", "word","word","word","word","word","word","word","!","word",],
     	a:"",
     	p:null,
@@ -356,21 +356,19 @@ MG_GAME_STUPIDROBOT = function ($) {
         	//console.log("MG_GAME_STUPIDROBOT.scrollIn");
         	MG_GAME_STUPIDROBOT.p=MG_GAME_STUPIDROBOT.wordSpaces[MG_GAME_STUPIDROBOT.activeLine];
         	MG_GAME_STUPIDROBOT.i++;
-        	//console.log("MG_GAME_STUPIDROBOT.activeLine: " + MG_GAME_STUPIDROBOT.activeLine);
-
+        	console.log("activeLine: " + MG_GAME_STUPIDROBOT.activeLine);
+    		if(MG_GAME_STUPIDROBOT.activeLine >= 10){
+    			//scroll is finished
+    			
+    			createjs.Ticker.setFPS(24);
+    			createjs.Ticker.addListener(MG_GAME_STUPIDROBOT.scorestage);
+    			return;
+			}
         	if(MG_GAME_STUPIDROBOT.i > MG_GAME_STUPIDROBOT.wordArray[MG_GAME_STUPIDROBOT.activeLine].length) {
         		MG_GAME_STUPIDROBOT.wordSpaces[MG_GAME_STUPIDROBOT.activeLine].innerHTML = MG_GAME_STUPIDROBOT.a;
         		MG_GAME_STUPIDROBOT.activeLine++;
         		MG_GAME_STUPIDROBOT.i=0;
         		
-        		//console.log(MG_GAME_STUPIDROBOT.activeLine + " and " + MG_GAME_STUPIDROBOT.wordArray.length);
-        		if(MG_GAME_STUPIDROBOT.activeLine >= MG_GAME_STUPIDROBOT.wordArray.length - 1){
-        			//scroll is finished
-        			
-        			createjs.Ticker.setFPS(24);
-        			createjs.Ticker.addListener(MG_GAME_STUPIDROBOT.scorestage);
-        			return;
-    			}
         		setTimeout("MG_GAME_STUPIDROBOT.scrollIn()",25);
         		return;
         	 }
@@ -385,12 +383,6 @@ MG_GAME_STUPIDROBOT = function ($) {
         		return;
         	}
         	
-    		if(MG_GAME_STUPIDROBOT.activeLine >= MG_GAME_STUPIDROBOT.wordArray.length ){
-    			//scroll is finished
-    			createjs.Ticker.setFPS(24);
-    			createjs.Ticker.addListener(MG_GAME_STUPIDROBOT.scorestage);
-    			return;
-			}
         	
         	MG_GAME_STUPIDROBOT.p.innerHTML = MG_GAME_STUPIDROBOT.a+"_";
 

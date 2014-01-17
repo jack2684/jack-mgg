@@ -112,10 +112,6 @@ class StupidRobotGame extends NexTagGame
      */
     public function getTurn(&$game, &$game_model, $tags = array())
     {
-    	$output = fopen("test_component.txt", 'a');
-    	fwrite($output, "\$game->name: " + $game->name);
-    	fclose($output);
-    	
         $data = array();
 
         $startTime = $this->getStartTime();
