@@ -26,7 +26,7 @@ MG_GAME_STUPIDROBOT = function ($) {
         scorehtml:"",
         
         // new added for scoring
-    	wordSpaces:null,
+    	wordSpaces:null, 
     	wordArray:["!", "!", "!", "!", "!", "!", "!", "!", "!", "!",],
     	//wordArray:["word", "word","word","word","word","word","word","word","!","word",],
     	a:"",
