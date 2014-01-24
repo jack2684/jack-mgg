@@ -1,59 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js">
     <head>
         <meta charset="utf-8">
-        <title>Page Not Found</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Stupid Robot</title>
+        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
 
-            * {
-                margin: 0;
-                line-height: 1.5;
-            }
+        <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
-            html {
-                color: #888;
-                font-family: sans-serif;
-                text-align: center;
-            }
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        
+		<script src="http://code.createjs.com/preloadjs-0.3.0.min.js"></script>
+		<script src="http://code.createjs.com/easeljs-0.6.0.min.js"></script>
+		<script src="http://code.createjs.com/tweenjs-0.4.0.min.js"></script>
+		<script src="http://code.createjs.com/movieclip-0.6.0.min.js"></script>
 
-            body {
-                left: 50%;
-                margin: -43px 0 0 -150px;
-                position: absolute;
-                top: 50%;
-                width: 300px;
-            }
-
-            h1 {
-                color: #555;
-                font-size: 2em;
-                font-weight: 400;
-            }
-
-            p {
-                line-height: 1.2;
-            }
-
-            @media only screen and (max-width: 270px) {
-
-                body {
-                    margin: 10px auto;
-                    position: static;
-                    width: 95%;
-                }
-
-                h1 {
-                    font-size: 1.5em;
-                }
-
-            }
-
-        </style>
+		<script src="js/animation_intro.js"></script>
+        <script src="js/intro.js"></script>
+        
+		<script src="js/animation_gameplay.js"></script>
+        <script src="js/game.js"></script>
+        
+        <script src="js/dommonster.js"></script>
     </head>
-    <body>
-        <h1>Page Not Found</h1>
-        <p>Sorry, but the page you were trying to view does not exist.</p>
+    <body id="splashContent">
+        <!--[if lt IE 8]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+			
+        <!-- Add your site or application content here -->
+               			<div id="loading">loading!</div>
+
+	       	     <canvas id="canvas" width=960 height=180></canvas>
+       			<div id="container">
+					<a href="game.html" id="bootButton" class="clearfix button">BOOT<br>GAME</a>
+	       	        <h1 class="clearfix">STUPID ROBOT</h1>
+					<p class="scrollText">&nbsp;</p>
+					<p class="scrollText">&nbsp;</p>
+					<p class="scrollText">&nbsp;</p>
+					<p class="scrollText">&nbsp;</p>
+					<p class="scrollText">&nbsp;</p>
+					<p class="scrollText">&nbsp;</p>
+					<p id="lastScrollText">&nbsp;</p>
+					<br>
+					<p class="scrollText">&nbsp;</p>
+			</div>
+
+
+       
+    </body>
+    
+        <body id="gameContent" class="gameContent">
+    <div id="game" class="gameContent">
+    	 <div id="idx.loading">loading!</div>
+
+        <!--[if lt IE 8]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+		<div id="container">
+			<div class="leftBox clearfix">
+				<span id="timer"></span>
+				<span id="gameMessage">STAND BY</span>
+				<input type=text id="inputArea" class="underlinedText clearfix"></input>
+				<div id="inputFields" class="clearfix">
+					<span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+					<a class="button">pass</a>
+				</div>
+				<canvas class="clearfix" id="canvas" width="342" height="212"> </canvas> 
+			</div>
+			<div class="rightBox" id="imageContainer">
+				<center><img src="images_TEMP/image.jpg" /></center>
+			</div>
+		</div>
+		
+		<script src="http://code.createjs.com/easeljs-0.5.0.min.js"></script>
+		<script src="http://code.createjs.com/tweenjs-0.3.0.min.js"></script>
+		<script src="http://code.createjs.com/movieclip-0.5.0.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+		<script src="js/animation_gameplay.js"></script>
+        <script src="js/game.js"></script>
+        </div>
     </body>
 </html>
-<!-- IE requires 512+ bytes: http://www.404-error-page.com/404-error-page-too-short-problem-microsoft-ie.shtml -->
