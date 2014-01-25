@@ -174,6 +174,7 @@ textarea {
 	text-transform:uppercase;
 	font-family:"telegrama-render";
 	background-image:url('../images/underline.gif');
+	background-size: 22px 35px;
 	padding-left:2px;
 }
 
@@ -420,6 +421,28 @@ textarea {
     clear: both;
 }
 
+/*
+ * Clearfix2: for possible duplication
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix2:before,
+.clearfix2:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix2:after {
+    clear: both;
+}
+
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    These examples override the primary ('mobile first') styles.
@@ -507,4 +530,12 @@ textarea {
     h3 {
         page-break-after: avoid;
     }
+}
+/* ==========================================================================
+   Realize underline in a violent way
+   ========================================================================== */
+#underline{
+	position: absolute;
+	width: 2.68em;
+	border-bottom: solid black 1px;
 }
