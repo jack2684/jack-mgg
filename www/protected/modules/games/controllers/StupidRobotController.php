@@ -61,6 +61,7 @@ class StupidRobotController extends GxController
             $cs->registerCssFile(Yii::app()->baseUrl . '/css/jquery.fancybox-1.3.4.css');
             $cs->registerCssFile(GamesModule::getAssetsUrl() . '/stupidRobot/css/normalize.css');
             $cs->registerCssFile(GamesModule::getAssetsUrl() . '/stupidRobot/css/main_new.css');
+            $cs->registerScriptFile(Yii::app()->baseUrl . '/js/mg.sounds.js', CClientScript::POS_HEAD);
             $cs->registerScriptFile('http://code.createjs.com/preloadjs-0.3.0.min.js', CClientScript::POS_HEAD);
             $cs->registerScriptFile('http://code.createjs.com/easeljs-0.6.0.min.js', CClientScript::POS_HEAD);
             $cs->registerScriptFile('http://code.createjs.com/tweenjs-0.4.0.min.js', CClientScript::POS_HEAD);
@@ -69,6 +70,10 @@ class StupidRobotController extends GxController
             $cs->registerScriptFile(Yii::app()->baseUrl . '/js/mg.game.api.js', CClientScript::POS_END);
             $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/intro.js', CClientScript::POS_BEGIN);
             $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/animation_intro.js', CClientScript::POS_END);
+            $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/mg.game.stupidrobot.js', CClientScript::POS_END);
+            $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/animation_gameplay.js', CClientScript::POS_END);
+            $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/loopAudio.js', CClientScript::POS_END);
+            $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/animation_score.js', CClientScript::POS_END);
             $throttleInterval = (int)Yii::app()->fbvStorage->get("settings.throttle_interval", 1500);
             $asset_url = Yii::app()->baseUrl;
             $arcade_url = Yii::app()->getRequest()->getHostInfo() . Yii::app()->createUrl('/');
