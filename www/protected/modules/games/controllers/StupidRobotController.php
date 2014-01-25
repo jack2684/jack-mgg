@@ -68,7 +68,6 @@ class StupidRobotController extends GxController
             $cs->registerScriptFile('http://code.createjs.com/movieclip-0.6.0.min.js', CClientScript::POS_HEAD);
             $cs->registerScriptFile(Yii::app()->baseUrl . '/js/mg.api.js', CClientScript::POS_END);
             $cs->registerScriptFile(Yii::app()->baseUrl . '/js/mg.game.api.js', CClientScript::POS_END);
-            $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/intro.js', CClientScript::POS_BEGIN);
             $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/animation_intro.js', CClientScript::POS_END);
             $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/mg.game.stupidrobot.js', CClientScript::POS_END);
             $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/animation_gameplay.js', CClientScript::POS_END);
@@ -95,6 +94,19 @@ class StupidRobotController extends GxController
             };
 
             $js = <<<EOD
+    MG_GAME_STUPIDROBOT.idx_init({
+        gid : 'StupidRobot',
+        app_id : 'MG_API',
+        asset_url : '$asset_url',
+        api_url : '{$game->api_base_url}',
+        arcade_url : '$arcade_url',
+        game_base_url : '{$game->game_base_url}',
+        play_once_and_move_on : {$game->play_once_and_move_on},
+        play_once_and_move_on_url : '{$game->play_once_and_move_on_url}',
+        throttleInterval : $throttleInterval
+      });
+EOD;
+            $jsInit = <<<EOD
 MG_STUPIDROBOT = {};
 MG_STUPIDROBOT.api_url = '{$game->api_base_url}';
 MG_STUPIDROBOT.isLogged = '{$isLogged}';
@@ -105,7 +117,8 @@ MG_STUPIDROBOT.username = '{$currentUserUsername}';
 MG_STUPIDROBOT.email = '{$currentUserEmail}';
 
 EOD;
-            Yii::app()->clientScript->registerScript(__CLASS__ . '#game', $js, CClientScript::POS_HEAD);
+            Yii::app()->clientScript->registerScript(__CLASS__ . '#game', $jsInit, CClientScript::POS_HEAD);
+            Yii::app()->clientScript->registerScript(__CLASS__ . '#game', $js, CClientScript::POS_READY);
 
             $this->layout = '//layouts/mobile';
 

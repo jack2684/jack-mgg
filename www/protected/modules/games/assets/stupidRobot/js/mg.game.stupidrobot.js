@@ -1,5 +1,20 @@
 MG_GAME_STUPIDROBOT = function ($) {
     return $.extend(MG_GAME_API, {
+    	idx_paragraphArray: null,
+    	idx_introText: ["This is Stupid Robot.",
+    	"Stupid Robot looks at everything but understands nothing.",
+    	"Can you help?",
+    	"Fill Stupid Robot’s input fields by naming what is in the pictures.",
+    	"Stupid Robot can only understand short words at first.",
+    	"Sometimes Stupid Robot has an ** NGR ERROR and can’t process a word.",
+    	"** No Good Reason",
+    	"If that happens, try another word until you find one that works."],
+    	idx_a : "",
+    	idx_p: null,
+    	idx_i:0,
+    	idx_activeLine:0,
+    	
+    	
         wordField:null,
         playOnceMoveOnFinalScreenWaitingTime:15000, // milliseconds
         submitButton:null,
@@ -20,7 +35,7 @@ MG_GAME_STUPIDROBOT = function ($) {
         maxLevel: 13,
         letterWidthInEms: 0.67,
         speed: 200,
-        secs: 120,
+        secs: 1200,
         fields: null,
         animation: null,
         scorehtml:"",
@@ -37,6 +52,97 @@ MG_GAME_STUPIDROBOT = function ($) {
     	scorestage: null,
     	scorelevel:0,
     	
+    	
+    	idx_scrollIn:function () {
+    		MG_GAME_STUPIDROBOT.idx_p=MG_GAME_STUPIDROBOT.idx_paragraphArray[MG_GAME_STUPIDROBOT.idx_activeLine];
+    		MG_GAME_STUPIDROBOT.idx_i++;
+    		if(MG_GAME_STUPIDROBOT.idx_i > MG_GAME_STUPIDROBOT.idx_introText[MG_GAME_STUPIDROBOT.idx_activeLine].length) {
+    			
+    			MG_GAME_STUPIDROBOT.idx_paragraphArray[MG_GAME_STUPIDROBOT.idx_activeLine].innerHTML = MG_GAME_STUPIDROBOT.idx_a;
+    			MG_GAME_STUPIDROBOT.idx_activeLine++;
+    			MG_GAME_STUPIDROBOT.idx_i=0;
+    			
+    			if(MG_GAME_STUPIDROBOT.idx_activeLine >= MG_GAME_STUPIDROBOT.idx_introText.length){
+    				return;
+    				}
+    			
+    			setTimeout("MG_GAME_STUPIDROBOT.idx_scrollIn()",1000);
+    			return;
+    		 }
+    		 
+    		MG_GAME_STUPIDROBOT.idx_a = MG_GAME_STUPIDROBOT.idx_introText[MG_GAME_STUPIDROBOT.idx_activeLine].substring(0,MG_GAME_STUPIDROBOT.idx_i);
+    		MG_GAME_STUPIDROBOT.idx_p.innerHTML = MG_GAME_STUPIDROBOT.idx_a+"_";
+    		setTimeout("MG_GAME_STUPIDROBOT.idx_scrollIn()",40);
+    	},
+
+
+
+    	idx_init:function (options){	
+    		// the following three lines is for merging
+    		loadgame = $("#loadgame").html();
+    		$("#loadgame").html("");
+    		$("#loadgame").hide();
+    		
+    		$(".manifest").hide();
+    		canvas = document.getElementById("canvas");
+    		canvas.width=window.innerWidth;
+    		window.onresize =function(){
+    				canvas.width=window.innerWidth;
+    		};
+    		images = images||{};
+    		var manifest = [
+    			{src:$(".manifest").find('img').eq(0).attr('src'), id:"Bitmap3"},
+    			{src:$(".manifest").find('img').eq(1).attr('src'), id:"Bitmap7"},
+    			{src:$(".manifest").find('img').eq(2).attr('src'), id:"Bitmap5"},
+    			{src:$(".manifest").find('img').eq(3).attr('src'), id:"Bitmap6"},
+    			{src:$(".manifest").find('img').eq(4).attr('src'), id:"FlashAICB"},
+    			{src:$(".manifest").find('img').eq(5).attr('src'), id:"tree"}
+    		];
+    		var loader = new createjs.LoadQueue(false);
+    		loader.addEventListener("fileload", MG_GAME_STUPIDROBOT.idx_handleFileLoad);
+    		loader.addEventListener("complete", MG_GAME_STUPIDROBOT.idx_handleComplete);
+    		loader.loadManifest(manifest);
+    		
+    		//set up scroller
+    		var paragraphCollection=document.getElementsByClassName("scrollText");
+    		MG_GAME_STUPIDROBOT.idx_paragraphArray = Array.prototype.slice.call( paragraphCollection );
+    		MG_GAME_STUPIDROBOT.idx_paragraphArray.push(document.getElementById("lastScrollText"));
+    		
+    		//boot game
+    		$("#bootButton").click(function(){
+    			// this several code is for violent merging
+    			$("body").html("");
+    			$("body").attr('id','gameContent');
+    			$("body").removeClass("splashContent");
+    			$("body").addClass("gameContent");
+    			$("body").html(loadgame);
+    			MG_GAME_STUPIDROBOT.init(options);
+    		});
+    	},
+
+
+    	idx_handleFileLoad:function (evt) {
+    		if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+    	},
+
+    	idx_handleComplete:function () {
+    		console.log("complete");
+    		var loadScreen=document.getElementById("loading");
+    		loadScreen.parentNode.removeChild(loadScreen);	
+
+
+    		exportRoot = new lib.animation_intro();
+
+    		stage = new createjs.Stage(canvas);
+    		stage.addChild(exportRoot);
+    		stage.update();
+
+    		createjs.Ticker.setFPS(24);
+    		createjs.Ticker.addEventListener("tick", stage);
+    		
+    		setTimeout("MG_GAME_STUPIDROBOT.idx_scrollIn()",2000);
+
+    	},
 
         init: function (options) {
         	// console.log("init");
@@ -199,6 +305,11 @@ MG_GAME_STUPIDROBOT = function ($) {
         	$("#gameMessage").html("INPUT A "+ MG_GAME_STUPIDROBOT.level+" LETTER WORD");
 
         	$("#inputFields span").eq(MG_GAME_STUPIDROBOT.level - MG_GAME_STUPIDROBOT.startingLevel).addClass("hilight");
+        	//$(".underlinedText").css({"background-size": 100/MG_GAME_STUPIDROBOT.level + "% 100% !important;"})
+        	//console.log(100/MG_GAME_STUPIDROBOT.level + "% 100% !important;");
+/*            $(".underlinedText").css("background-size",function(i){
+                return 100/MG_GAME_STUPIDROBOT.level + "% 100%;";
+                });*/
 
         },
         

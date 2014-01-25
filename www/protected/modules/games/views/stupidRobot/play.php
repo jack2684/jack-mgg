@@ -1,8 +1,8 @@
-
-    <body id="gameContent" class="gameContent">
     	 <input type="hidden" id="game_assets_uri" value="<?php echo GamesModule::getAssetsUrl() . '/stupidRobot/'; ?>" />
     	 <input type="hidden" id="loopsound" value="<?php echo GamesModule::getAssetsUrl() . '/pyramid/'; ?>" />
-    	 
+    <body id="gameContent" class="gameContent">
+
+    	 <div id = "loadgame">
 		<form>
 			<button class="button" id="button-loop-1" type="button" value="1">sound</button>
 		</form>
@@ -16,11 +16,12 @@
 	
 	        <!-- Add your site or application content here -->
 			<div id="container">
-				<div class="leftBox clearfix">
+				<div class="leftBox clearfix2">
 					<span id="timer"></span>
 					<span id="gameMessage">STAND BY</span>
-					<input type=text id="inputArea" class="underlinedText clearfix"></input>
-					<div id="inputFields" class="clearfix">
+					<input type=text id="inputArea" class="underlinedText clearfix2"></input>
+					<!-- span id = "underline">jack</span-->
+					<div id="inputFields" class="clearfix2">
 						<span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
 						<a class="button" id="pass">pass</a>
 					</div>
@@ -55,7 +56,7 @@
 				</div>
 			</div>
 	    </div>
-	    
+	    </div>
 	    
     </body>
 

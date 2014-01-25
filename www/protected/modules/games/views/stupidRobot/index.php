@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script-->
     </head>
-    <body id="splashContent">
+    <body class="splashContent">
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -32,7 +32,7 @@
               			
 	       	     <canvas id="canvas" width=960 height=180></canvas>
        			<div id="container">
-					<a href="<?php echo $game_url; ?>/StupidRobot/play" id="bootButton" class="clearfix button">BOOT<br>GAME</a>
+					<span id="bootButton" class="clearfix button">BOOT<br>GAME</span>
 	       	        <h1 class="clearfix">STUPID ROBOT</h1>
 					<p class="scrollText">&nbsp;</p>
 					<p class="scrollText">&nbsp;</p>
@@ -44,14 +44,80 @@
 					<br>
 					<p class="scrollText">&nbsp;</p>
 			</div>
-		<!-- script src="http://code.createjs.com/preloadjs-0.3.0.min.js"></script>
-		<script src="http://code.createjs.com/easeljs-0.6.0.min.js"></script>
-		<script src="http://code.createjs.com/tweenjs-0.4.0.min.js"></script>
-		<script src="http://code.createjs.com/movieclip-0.6.0.min.js"></script>
 
-		<script src="js/animation_intro.js"></script>
-        <script src="js/intro.js"></script-->
 
+	    <div id="loadgame">
+    	 <input type="hidden" id="game_assets_uri" value="<?php echo GamesModule::getAssetsUrl() . '/stupidRobot/'; ?>" />
+    	 <input type="hidden" id="loopsound" value="<?php echo GamesModule::getAssetsUrl() . '/pyramid/'; ?>" />
+    	 
+		<form>
+			<button class="button" id="button-loop-1" type="button" value="1">sound</button>
+		</form>
+    
+         <div id="game">
+	    	 <div id="loading">loading!</div>
+	
+	        <!--[if lt IE 8]>
+	            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	        <![endif]-->
+	
+	        <!-- Add your site or application content here -->
+			<div id="container">
+				<div class="leftBox clearfix2">
+					<span id="timer"></span>
+					<span id="gameMessage">STAND BY</span>
+					<input type=text id="inputArea" class="underlinedText clearfix2"></input>
+					<!-- span id = "underline">jack</span-->
+					<div id="inputFields" class="clearfix2">
+						<span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+						<a class="button" id="pass">pass</a>
+					</div>
+					<canvas class="clearfix" id="canvas" width="342" height="212"> </canvas> 
+				</div>
+				<div class="rightBox" id="imageContainer">
+					<center><img src="" /></center>
+				</div>
+			</div>
+        </div>
+		
+		
+		<div id="score">
+
+			<div id="container">
+				<div class="leftBox clearfix">
+					<span id="gameMessage">YOU TAUGHT STUPID ROBOT 6 WORDS<br>STUPID ROBOT IS SOMEWHAT SMARTER!</span>
+					<br><span class="underlinedText">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<br><span class="underlinedText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<br><span class="underlinedText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<br><span class="underlinedText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<br><span class="underlinedText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<br><span class="underlinedText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<br><span class="underlinedText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<br><span class="underlinedText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<br><span class="underlinedText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<br><span class="underlinedText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<br><a class="button" id="reboot">REBOOT</a>
+				</div>
+				<div class="rightBox" id="imageContainer">
+					<canvas class="clearfix" id="canvas" width="1000" height="1000"> </canvas> 
+				</div>
+			</div>
+	    </div>
+	    
+	    </div>
+			
        
     </body>
+         <input type="hidden" id="game_assets_uri" value="<?php echo GamesModule::getAssetsUrl() . '/stupidRobot/'; ?>" />
+    	 <input type="hidden" id="loopsound" value="<?php echo GamesModule::getAssetsUrl() . '/pyramid/'; ?>" />
+
+    <script id="template-turn" type="text/x-jquery-tmpl">
+        <div style="text-align:center">
+            <img src="${url}" alt="game image" id="image_to_tag" style="width: auto !important; height: auto !important; "/>
+        </div>
+    </script>
+    
+    <script id="template-more-info" type="text/x-jquery-tmpl">
+        <a href="${url}">Click here to learn more about ${name}</a>
+    </script>
 </html>	

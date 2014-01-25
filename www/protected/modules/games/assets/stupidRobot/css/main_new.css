@@ -180,33 +180,33 @@ textarea {
 
 /*Intro */
 
-#splashContent{
+.splashContent{
 	background-color: black;
 	display:block;
 }
 
-#splashContent #container{
+.splashContent #container{
 	width:750px;
 	margin:0px auto;
 	}
 
-#splashContent h1 {
+.splashContent h1 {
 	font-family:"telegrama-raw";
 	font-size:4.5em;
 	color:#1BBF77;
 }
 
-#splashContent p{
+.splashContent p{
 	font-family:"telegrama-raw";
 	font-size:.80em;
 	color:#1BBF77;
 }
 
-#splashContent .button{
+.splashContent .button{
 		float:right;
 }
 
-#splashContent canvas{
+.splashContent canvas{
 	height:180px;
 	background-color:white;
 	margin-bottom:30px;
