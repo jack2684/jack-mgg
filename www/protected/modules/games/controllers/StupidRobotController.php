@@ -137,6 +137,8 @@ EOD;
             $cs->registerScriptFile('http://code.createjs.com/movieclip-0.6.0.min.js', CClientScript::POS_HEAD);
             $cs->registerScriptFile(Yii::app()->baseUrl . '/js/mg.api.js', CClientScript::POS_END);
             $cs->registerScriptFile(Yii::app()->baseUrl . '/js/mg.game.api.js', CClientScript::POS_END);
+            $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/intro.js', CClientScript::POS_BEGIN);
+            $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/animation_intro.js', CClientScript::POS_END);
             $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/mg.game.stupidrobot.js', CClientScript::POS_END);
             $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/animation_gameplay.js', CClientScript::POS_END);
             $cs->registerScriptFile(GamesModule::getAssetsUrl() . '/stupidRobot/js/loopAudio.js', CClientScript::POS_END);
